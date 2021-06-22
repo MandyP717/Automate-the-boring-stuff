@@ -7,7 +7,7 @@ keeps calling collatz() on that number until the function returns the value 1
 """
 
 
-def collatz(num): 
+def collatz(num):
     if num % 2:  # odd
         num10 = 3 * num + 1
     else:  # even
@@ -19,12 +19,16 @@ def collatz(num):
     else:
         print(num10)
 
+
 def give_me_a_number():
-    num = input("Give me a number:\n")
-    try:
-        num = int(num)
-        collatz(num)
-    except ValueError:
-        print('Please enter an integer!')
+    while True:
+        num = input("Give me a number:\n")
+        try:
+            num = int(num)
+            collatz(num)
+            break
+        except ValueError:
+            print("ValueError, Please enter an integer!\n")
+
 
 give_me_a_number()
