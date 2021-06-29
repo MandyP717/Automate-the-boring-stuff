@@ -10,8 +10,7 @@ def comma_code(join_list):
         joined_string = ", ".join(convert_list[:-1])
         return f"{joined_string} and {convert_list[-1]}"
     elif len(join_list) == 2:
-        my_string = f"{join_list[0]} and {join_list[1]}"
-        return my_string
+        return f"{join_list[0]} and {join_list[1]}"
     else:
         return join_list
 
