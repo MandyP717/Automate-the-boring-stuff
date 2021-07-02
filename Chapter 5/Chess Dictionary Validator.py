@@ -14,78 +14,90 @@ example_board = {
     "2g": "bbischip",
     "5h": "bqueen",
     "3e": "wking",
+    "1a": "wpawn",
+    "2a": "wpawn",
+    "3a": "wpawn",
+    "4a": "wpawn",
+    "5a": "wpawn",
+    "6a": "wpawn",
+    "7a": "wpawn",
+    "8a": "wpawn",
+    "2b": "wpawn",
+    "3b": "wpawn",
+    "5b": "wpawn",
 }
+
+valid_board = [
+    "1a",
+    "1b",
+    "1c",
+    "1d",
+    "1e",
+    "1f",
+    "1g",
+    "1h",
+    "2a",
+    "2b",
+    "2c",
+    "2d",
+    "2e",
+    "2f",
+    "2g",
+    "2h",
+    "3a",
+    "3b",
+    "3c",
+    "3d",
+    "3e",
+    "3f",
+    "3g",
+    "3h",
+    "4a",
+    "4b",
+    "4c",
+    "4d",
+    "4e",
+    "4f",
+    "4g",
+    "4h",
+    "5a",
+    "5b",
+    "5c",
+    "5d",
+    "5e",
+    "5f",
+    "5g",
+    "5h",
+    "6a",
+    "6b",
+    "6c",
+    "6d",
+    "6e",
+    "6f",
+    "6g",
+    "6h",
+    "7a",
+    "7b",
+    "7c",
+    "7d",
+    "7e",
+    "7f",
+    "7g",
+    "7h",
+    "8a",
+    "8b",
+    "8c",
+    "8d",
+    "8e",
+    "8f",
+    "8g",
+    "8h",
+]
 
 
 def is_Valid_Chess_Board(dic):
     black_pieces = {}
     white_pieces = {}
-    valid_board = [
-        "a1",
-        "a2",
-        "a3",
-        "a4",
-        "a5",
-        "a6",
-        "a7",
-        "a8",
-        "b1",
-        "b2",
-        "b3",
-        "b4",
-        "b5",
-        "b6",
-        "b7",
-        "b8",
-        "c1",
-        "c2",
-        "c3",
-        "c4",
-        "c5",
-        "c6",
-        "c7",
-        "c8",
-        "d1",
-        "d2",
-        "d3",
-        "d4",
-        "d5",
-        "d6",
-        "d7",
-        "d8",
-        "e1",
-        "e2",
-        "e3",
-        "e4",
-        "e5",
-        "e6",
-        "e7",
-        "e8",
-        "f1",
-        "f2",
-        "f3",
-        "f4",
-        "f5",
-        "f6",
-        "f7",
-        "f8",
-        "g1",
-        "g2",
-        "g3",
-        "g4",
-        "g5",
-        "g6",
-        "g7",
-        "g8",
-        "h1",
-        "h2",
-        "h3",
-        "h4",
-        "h5",
-        "h6",
-        "h7",
-        "h8",
-    ]
 
     for key, value in dic.items():  # seperate the pieces in white/black
         if value[0] == "b":
@@ -95,21 +107,26 @@ def is_Valid_Chess_Board(dic):
 
     only_piece_name_black = list(black_pieces.values())
     only_piece_name_white = list(white_pieces.values())
+    print(only_piece_name_white)
 
     if (
-        len(black_pieces) <= 16 and len(white_pieces) <= 16
-    ):  # check is only 16 pieces for white and black
-        if (
+        (len(black_pieces) <= 16 and len(white_pieces) <= 16)
+        and (
             only_piece_name_black.count("bking") == 1
             and only_piece_name_white.count("wking") == 1
-        ):  # only one king
-            if (
-                only_piece_name_black.count("bpawn") <= 8
-                and only_piece_name_white.count("wpawn") <= 8
-            ):  # 8 or less pawns
-                return True
+        )
+        and (
+            only_piece_name_black.count("bpawn") <= 8
+            and only_piece_name_white.count("wpawn") <= 8
+        )
+    ):
+        check_one = True
     else:
-        return False
+        check_one = False
+
+    check_two = all(item in valid_board for item in dic.keys())
+
+    return check_one and check_two
 
 
 print(is_Valid_Chess_Board(example_board))
