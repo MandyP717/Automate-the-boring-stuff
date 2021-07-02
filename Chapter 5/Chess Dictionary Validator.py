@@ -107,7 +107,6 @@ def is_Valid_Chess_Board(dic):
 
     only_piece_name_black = list(black_pieces.values())
     only_piece_name_white = list(white_pieces.values())
-    print(only_piece_name_white)
 
     if (
         (len(black_pieces) <= 16 and len(white_pieces) <= 16)
