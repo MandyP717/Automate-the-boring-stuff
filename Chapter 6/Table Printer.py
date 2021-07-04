@@ -10,10 +10,7 @@ table_data = [
 
 
 def length_inner_list(table):
-    max_length = []
-    for inner_list in table_data:
-        length_string = max([len(item) for item in inner_list])
-        max_length.append(length_string)
+    max_length = [max([len(item) for item in inner_list]) for inner_list in table_data]
     return max_length
 
 def rjust_table(table):
