@@ -59,7 +59,7 @@ def find_dates(text):
     result = regex.findall(text)
     saved_dates = [
         {"day": date[0], "month": date[1], "year": date[2]} for date in result
-    ]  # month remains string
+    ]
     return saved_dates
 
 
