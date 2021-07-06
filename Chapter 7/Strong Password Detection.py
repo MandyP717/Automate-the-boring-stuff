@@ -7,7 +7,7 @@ regex patterns to validate its strength."""
 
 import re
 
-#test password
+# test password
 strong_password = "9sP7RKvmTuBJgmTLvLy"
 short_password = "PAu2Mr"
 no_digit_password = "LXqGnShmFFfRGvBt"
@@ -27,12 +27,13 @@ $ - end of string
 [A-Z] - uppercase
 """
 
+
 def check_for_strong_password(password):
     regex = re.compile(r"^(?=(.*[a-z]{1,}))(?=(.*\d){1,})(?=(.*[A-Z]){1,}).{8,}$")
     if re.match(regex, password):
-        print('It is a strong password')
+        print("It is a strong password")
     else:
-        print('It is a weak password')
+        print("It is a weak password")
 
-check_for_strong_password(no_digit_password)
-    
+
+check_for_strong_password(strong_password)
