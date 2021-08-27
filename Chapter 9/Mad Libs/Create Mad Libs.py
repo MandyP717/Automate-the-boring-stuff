@@ -29,7 +29,6 @@ The results should be printed to the screen and saved to a new text file.
 
 from pathlib import Path, PurePath
 import glob
-import re
 
 
 def text_menu(dictionary):  # Menu design
@@ -70,22 +69,24 @@ print(read_file)
 # Find ADJECTIVE/VERB/NOUN, if found give a prompt (use regex)
 # Lets user change it
 new_sentence = []
-pattern_mine = re.compile(r"NOUN|VERB|ADJECTIVE|ADVERB")
+pattern_mine = ["NOUN", "VERB", "ADJECTIVE", "ADVERB"]
 for word in read_file.split():
-    first_search = re.search(pattern_mine, word)
-    if bool(first_search):
-        change_it = input(f"\nEnter a {first_search.group().lower()}: \n")
-        subbed_word = re.sub(pattern_mine, change_it, word)
-        new_sentence.append(subbed_word)
+    first_search = [
+        check for check in pattern_mine if check in word
+    ]  # check if word is the same as items in pattern_mine
+    if first_search:
+        change_it = input(f"\nEnter a {first_search[0].lower()}: \n")
+        replace_word = word.replace(first_search[0], change_it)
+        new_sentence.append(replace_word)
     else:
         new_sentence.append(word)
 
 # Print the result
-new_sentence = ' '.join(new_sentence)
+new_sentence = " ".join(new_sentence)
 print("\nYour filled in sentence is:")
-print(f'{new_sentence} \n')
+print(f"{new_sentence} \n")
 
 # Save the result to a new text file
-with open(input("Choose a name for your new text file: \n"), "w") as f:
+with open(input("Choose a name for your new text file: \n") + ".txt", "w") as f:
     f.write(new_sentence)
     f.close()
